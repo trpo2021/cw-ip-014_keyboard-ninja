@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include <lib-keyboard-ninja/text.h>
+
 void read_text (char text[512], char identifier[], char filename[]){
 	FILE *base;
 	int i;
