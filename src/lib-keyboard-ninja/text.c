@@ -6,7 +6,7 @@
 
 void read_text (char text[512], char identifier[], char filename[]){
 	FILE *base;
-	int i;
+	long long unsigned int i;
 	char string[512+16];
 	char path[256] = "../texts/";
 	strcat(path,filename);
