@@ -37,8 +37,8 @@ void randomize_text_number(char text_type, char text_number[11])
 
 char randomize_text_type()
 {
-	char text_type;
-	
+    char text_type;
+
     switch (rand() % 5) {
     case 0:
         text_type = 'S';
@@ -56,8 +56,8 @@ char randomize_text_type()
         text_type = 'M';
         break;
     }
-	
-	return text_type;
+
+    return text_type;
 }
 
 void randomize_identifier(char identifier[16])

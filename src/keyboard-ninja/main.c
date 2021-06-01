@@ -7,12 +7,12 @@
 
 int main()
 {
-	srand(time(NULL));
-	
+    srand(time(NULL));
+
     char identifier[16] = {0};
     char text[512] = {0};
     char filename[256] = "stdin.txt";
-	randomize_identifier(identifier);
+    randomize_identifier(identifier);
     read_text(text, identifier, filename);
     puts(text);
 
