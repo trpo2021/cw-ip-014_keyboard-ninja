@@ -4,6 +4,37 @@
 
 #include <lib-keyboard-ninja/text.h>
 
+const int AMOUNT_OF_S_TEXTS = 25;
+const int AMOUNT_OF_W_TEXTS = 10;
+const int AMOUNT_OF_N_TEXTS = 10;
+const int AMOUNT_OF_L_TEXTS = 10;
+const int AMOUNT_OF_M_TEXTS = 1;
+
+void randomize_text_number(char text_type, char text_number[11])
+{
+    int number;
+
+    switch (text_type) {
+    case 'S':
+        number = rand() % AMOUNT_OF_S_TEXTS + 1;
+        break;
+    case 'W':
+        number = rand() % AMOUNT_OF_W_TEXTS + 1;
+        break;
+    case 'N':
+        number = rand() % AMOUNT_OF_N_TEXTS + 1;
+        break;
+    case 'L':
+        number = rand() % AMOUNT_OF_L_TEXTS + 1;
+        break;
+    case 'M':
+        number = rand() % AMOUNT_OF_M_TEXTS + 1;
+        break;
+    }
+
+    sprintf(text_number, "%d", number);
+}
+
 void randomize_text_type(char text_type)
 {
     switch (rand() % 5) {
