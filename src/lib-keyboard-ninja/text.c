@@ -35,8 +35,10 @@ void randomize_text_number(char text_type, char text_number[11])
     sprintf(text_number, "%d", number);
 }
 
-void randomize_text_type(char text_type)
+char randomize_text_type()
 {
+	char text_type;
+	
     switch (rand() % 5) {
     case 0:
         text_type = 'S';
@@ -54,16 +56,18 @@ void randomize_text_type(char text_type)
         text_type = 'M';
         break;
     }
+	
+	return text_type;
 }
 
 void randomize_identifier(char identifier[16])
 {
-    memset(identifier, 0, sizeof(identifier));
+    memset(identifier, 0, 16);
     char text_type;
     char text_number[11];
 
-    randomize_text_type(text_type);
-    randomize_text_number(text_number);
+    text_type = randomize_text_type();
+    randomize_text_number(text_type, text_number);
 
     identifier[0] = text_type;
     strcat(identifier, "#");
