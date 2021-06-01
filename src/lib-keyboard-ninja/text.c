@@ -2,15 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <lib-keyboard-ninja/auxiliary.h>
 #include <lib-keyboard-ninja/text.h>
 
-const int AMOUNT_OF_S_TEXTS = 25;
-const int AMOUNT_OF_W_TEXTS = 10;
-const int AMOUNT_OF_N_TEXTS = 10;
-const int AMOUNT_OF_L_TEXTS = 10;
-const int AMOUNT_OF_M_TEXTS = 1;
-
-void randomize_text_number(char text_type, char text_number[11])
+void randomize_text_number(
+        char text_type, char text_number[MAX_LENGTH_OF_TEXT_NUMBER])
 {
     int number;
 
@@ -60,10 +56,10 @@ char randomize_text_type()
     return text_type;
 }
 
-void randomize_identifier(char identifier[16])
+void randomize_identifier(char identifier[MAX_LENGTH_OF_IDENTIFIER])
 {
     char text_type;
-    char text_number[11];
+    char text_number[MAX_LENGTH_OF_TEXT_NUMBER];
 
     if (identifier[0] == 0)
         text_type = randomize_text_type();
@@ -72,7 +68,7 @@ void randomize_identifier(char identifier[16])
 
     randomize_text_number(text_type, text_number);
 
-    memset(identifier, 0, 16);
+    memset(identifier, 0, MAX_LENGTH_OF_IDENTIFIER);
 
     identifier[0] = text_type;
     strcat(identifier, "#");
@@ -80,16 +76,22 @@ void randomize_identifier(char identifier[16])
     strcat(identifier, " | ");
 }
 
-void read_text(char text[512], char identifier[16], char filename[256])
+void read_text(
+        char text[MAX_LENGTH_OF_TEXT],
+        char identifier[MAX_LENGTH_OF_IDENTIFIER],
+        char filename[MAX_LENGTH_OF_FILENAME])
 {
     FILE* base;
     long long unsigned int i;
-    char string[512 + 16];
-    char path[10 + 256] = "../texts/";
+    char string[MAX_LENGTH_OF_TEXT + MAX_LENGTH_OF_IDENTIFIER];
+    char path[LENGTH_OF_PATH + MAX_LENGTH_OF_FILENAME];
+
+    strcpy(path, "../texts/");
+
     strcat(path, filename);
     base = fopen(path, "r");
 
-    while (fgets(string, 528, base)) {
+    while (fgets(string, MAX_LENGTH_OF_TEXT + MAX_LENGTH_OF_IDENTIFIER, base)) {
         if (!strncmp(identifier, string, strlen(identifier))) {
             for (i = strlen(identifier); i < strlen(string); i++) {
                 text[i - strlen(identifier)] = string[i];
