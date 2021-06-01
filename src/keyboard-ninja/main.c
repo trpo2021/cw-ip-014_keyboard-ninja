@@ -10,9 +10,11 @@ int main()
 {
     srand(time(NULL));
 
-    char identifier[MAX_LENGTH_OF_IDENTIFIER] = {0};
-    char text[MAX_LENGTH_OF_TEXT] = {0};
-    char filename[MAX_LENGTH_OF_FILENAME] = "stdin.txt";
+    char identifier[MAX_LENGTH_OF_IDENTIFIER];
+    char text[MAX_LENGTH_OF_TEXT];
+    char filename[MAX_LENGTH_OF_FILENAME];
+	
+	strcpy(filename, "stdin.txt");
 	
 	identifier[0] = 'M';
 	

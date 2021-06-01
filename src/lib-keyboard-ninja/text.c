@@ -80,7 +80,10 @@ void read_text(char text[MAX_LENGTH_OF_TEXT], char identifier[MAX_LENGTH_OF_IDEN
     FILE* base;
     long long unsigned int i;
     char string[MAX_LENGTH_OF_TEXT + MAX_LENGTH_OF_IDENTIFIER];
-    char path[LENGTH_OF_PATH + MAX_LENGTH_OF_FILENAME] = "../texts/";
+    char path[LENGTH_OF_PATH + MAX_LENGTH_OF_FILENAME];
+	
+	strcpy(path, "../texts/");
+	
     strcat(path, filename);
     base = fopen(path, "r");
 
