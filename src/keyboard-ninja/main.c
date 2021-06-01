@@ -6,9 +6,9 @@
 
 int main()
 {
-    char identifier[] = "S#1 | ";
+    char identifier[16] = "S#1 | ";
     char text[512] = {0};
-    char filename[] = "stdin.txt";
+    char filename[256] = "stdin.txt";
     read_text(text, identifier, filename);
     puts(text);
 
