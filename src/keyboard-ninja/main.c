@@ -12,6 +12,9 @@ int main()
     char identifier[16] = {0};
     char text[512] = {0};
     char filename[256] = "stdin.txt";
+	
+	identifier[0] = 'M';
+	
     randomize_identifier(identifier);
     read_text(text, identifier, filename);
     puts(text);
