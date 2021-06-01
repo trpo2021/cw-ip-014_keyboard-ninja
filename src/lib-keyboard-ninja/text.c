@@ -4,6 +4,27 @@
 
 #include <lib-keyboard-ninja/text.h>
 
+void randomize_text_type(char text_type)
+{
+    switch (rand() % 5) {
+    case 0:
+        text_type = 'S';
+        break;
+    case 1:
+        text_type = 'W';
+        break;
+    case 2:
+        text_type = 'N';
+        break;
+    case 3:
+        text_type = 'L';
+        break;
+    case 4:
+        text_type = 'M';
+        break;
+    }
+}
+
 void randomize_identifier(char identifier[16])
 {
     memset(identifier, 0, sizeof(identifier));
