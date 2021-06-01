@@ -4,14 +4,15 @@
 #include <time.h>
 
 #include <lib-keyboard-ninja/text.h>
+#include <lib-keyboard-ninja/auxiliary.h>
 
 int main()
 {
     srand(time(NULL));
 
-    char identifier[16] = {0};
-    char text[512] = {0};
-    char filename[256] = "stdin.txt";
+    char identifier[MAX_LENGTH_OF_IDENTIFIER] = {0};
+    char text[MAX_LENGTH_OF_TEXT] = {0};
+    char filename[MAX_LENGTH_OF_FILENAME] = "stdin.txt";
 	
 	identifier[0] = 'M';
 	
