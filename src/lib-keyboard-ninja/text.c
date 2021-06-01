@@ -62,12 +62,17 @@ char randomize_text_type()
 
 void randomize_identifier(char identifier[16])
 {
-    memset(identifier, 0, 16);
     char text_type;
     char text_number[11];
 
-    text_type = randomize_text_type();
+    if (identifier[0] == 0)
+        text_type = randomize_text_type();
+    else
+        text_type = identifier[0];
+
     randomize_text_number(text_type, text_number);
+
+    memset(identifier, 0, 16);
 
     identifier[0] = text_type;
     strcat(identifier, "#");
