@@ -4,6 +4,21 @@
 
 #include <lib-keyboard-ninja/text.h>
 
+void randomize_identifier(char identifier[16])
+{
+    memset(identifier, 0, sizeof(identifier));
+    char text_type;
+    char text_number[11];
+
+    randomize_text_type(text_type);
+    randomize_text_number(text_number);
+
+    identifier[0] = text_type;
+    strcat(identifier, "#");
+    strcat(identifier, text_number);
+    strcat(identifier, " | ");
+}
+
 void read_text(char text[512], char identifier[16], char filename[256])
 {
     FILE* base;
@@ -20,6 +35,8 @@ void read_text(char text[512], char identifier[16], char filename[256])
             }
         }
     }
+
+    text[strcspn(text, "\n")] = 0;
 
     fclose(base);
 }
