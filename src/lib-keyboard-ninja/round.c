@@ -9,11 +9,11 @@ void print_round_interface(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
         char text[MAX_LENGTH_OF_TEXT])
 {
-    printf("ROUND | IDENTIFIER ");
+    printf("\033[1mROUND | IDENTIFIER \033[0m");
 
     int i;
     for (i = 0; i < strcspn(identifier, " | "); i++)
-        printf("%c", identifier[i]);
+        printf("\033[32m%c\033[0m", identifier[i]);
 }
 
 void start_round(
