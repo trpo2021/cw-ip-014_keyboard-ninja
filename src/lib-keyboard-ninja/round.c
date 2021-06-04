@@ -5,13 +5,11 @@
 #include <lib-keyboard-ninja/auxiliary.h>
 #include <lib-keyboard-ninja/round.h>
 
-void print_round_interface(
-        char identifier[MAX_LENGTH_OF_IDENTIFIER],
-        char text[MAX_LENGTH_OF_TEXT])
+void print_round_interface(char identifier[MAX_LENGTH_OF_IDENTIFIER])
 {
     printf("\033[1mROUND | IDENTIFIER \033[0m");
 
-    int i;
+    long long unsigned int i;
     for (i = 0; i < strcspn(identifier, " | "); i++)
         printf("\033[32m%c\033[0m", identifier[i]);
 }
@@ -20,33 +18,57 @@ void start_round(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
         char text[MAX_LENGTH_OF_TEXT])
 {
-    int i, counter = 0, start_of_current_word = 0;
-    char input;
+    long long unsigned int i, start_of_current_word, end_of_current_word, position;
+    char input [MAX_LENGTH_OF_TEXT], buffer [MAX_LENGTH_OF_TEXT];
+	
+	strcpy(buffer, text);
+	
+	position = 0;
+	start_of_current_word = 0;
+	end_of_current_word = strcspn(buffer," ");
+	
+	buffer[strcspn(buffer," ")] = 64;
 
-    while (counter < strlen(text)) {
-        system("cls");
+    while (position < strlen(text)) {
+        system("clear");
+		system("cls");
 
         print_round_interface(identifier);
 
         printf("\n   Original text:\n");
 
-        for (i = 0; i < start_of_current_word; i++)
+        for (i = 0; i < start_of_current_word; i++){
             printf("\033[90m%c\033[0m", text[i]);
-
-        printf("\033[104m%c\033[0m", text[counter]);
-
-        for (i = counter + 1; i < strlen(text); i++)
+		}
+		
+		for (i = start_of_current_word; i < end_of_current_word; i++){
+            printf("\033[104m%c\033[0m", text[i]);
+		}
+		
+        for (i = end_of_current_word; i < strlen(text); i++){
             printf("%c", text[i]);
-
+		}
+		
         printf("\n\n   Input:\n");
+		
+		//scanf("%s",&input);
+        fgets(input, MAX_LENGTH_OF_TEXT, stdin);
+		
+		if (!strncmp(input, "/exit", 5)) break;
+		
+		for (i = start_of_current_word; i < end_of_current_word; i++){
+			if (input[i - start_of_current_word] == text[i]){
+				position = i;
+			}
+		}
+		
+		if (position == end_of_current_word - 1){
+			position = end_of_current_word + 1;
+			start_of_current_word = end_of_current_word + 1;
+			end_of_current_word = strcspn(buffer," ");
+			
+			buffer[strcspn(buffer," ")] = 64;
+		}
 
-        for (i = start_of_current_word; i < counter; i++)
-            printf("%c", text[i]);
-        input = getche();
-
-        if (text[counter] == ' ')
-            start_of_current_word = counter + 1;
-        if (input == text[counter])
-            counter++;
     }
 }
