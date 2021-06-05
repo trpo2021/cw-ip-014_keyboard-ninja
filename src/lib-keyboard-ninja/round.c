@@ -36,13 +36,17 @@ void start_round(
 
         print_round_interface(identifier);
 
-        printf("\n   Original text:\n");
+        printf("\033[1m\n   Original text:\n\033[0m");
 
         for (i = 0; i < start_of_current_word; i++) {
             printf("\033[90m%c\033[0m", text[i]);
         }
 
-        for (i = start_of_current_word; i < end_of_current_word; i++) {
+        for (i = start_of_current_word; i < position; i++) {
+            printf("\033[32m%c\033[0m", text[i]);
+        }
+
+        for (i = position; i < end_of_current_word; i++) {
             printf("\033[104m%c\033[0m", text[i]);
         }
 
@@ -50,9 +54,8 @@ void start_round(
             printf("%c", text[i]);
         }
 
-        printf("\n\n   Input:\n");
+        printf("\033[1m\n\n   Input:\n\033[0m");
 
-        // scanf("%s",&input);
         fgets(input, MAX_LENGTH_OF_TEXT, stdin);
 
         if (!strncmp(input, "/exit", 5))
