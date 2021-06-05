@@ -21,6 +21,7 @@ void start_round(
     long long unsigned int i, start_of_current_word, end_of_current_word,
             position;
     char input[MAX_LENGTH_OF_TEXT], buffer[MAX_LENGTH_OF_TEXT];
+    int counter;
 
     strcpy(buffer, text);
 
@@ -32,7 +33,6 @@ void start_round(
 
     while (position < strlen(text)) {
         system("clear");
-        system("cls");
 
         print_round_interface(identifier);
 
@@ -56,18 +56,24 @@ void start_round(
 
         printf("\033[1m\n\n   Input:\n\033[0m");
 
+        for (i = start_of_current_word; i < position; i++) {
+            printf("\033[32m%c\033[0m", text[i]);
+        }
+
         fgets(input, MAX_LENGTH_OF_TEXT, stdin);
 
         if (!strncmp(input, "/exit", 5))
             break;
 
-        for (i = start_of_current_word; i < end_of_current_word; i++) {
-            if (input[i - start_of_current_word] == text[i]) {
-                position = i;
+        for (i = position, counter = 0; i < end_of_current_word; i++) {
+            if (input[counter++] == text[i]) {
+                position = i + 1;
+            } else {
+                break;
             }
         }
 
-        if (position == end_of_current_word - 1) {
+        if (position == end_of_current_word) {
             position = end_of_current_word + 1;
             start_of_current_word = end_of_current_word + 1;
             end_of_current_word = strcspn(buffer, " ");
