@@ -21,7 +21,7 @@ CTEST(compare_input_to_text, test1)
     current_word.end = strcspn(buffer, " ");
     buffer[strcspn(buffer, " ")] = '@';
 
-    compare_input_to_text(text, input, current_word);
+    compare_input_to_text(text, input, &current_word);
 
     const int exp = 5;
 
@@ -44,7 +44,7 @@ CTEST(compare_input_to_text, test2)
     current_word.end = strcspn(buffer, " ");
     buffer[strcspn(buffer, " ")] = '@';
 
-    compare_input_to_text(text, input, current_word);
+    compare_input_to_text(text, input, &current_word);
 
     const int exp = 3;
 
@@ -67,7 +67,7 @@ CTEST(compare_input_to_text, test3)
     current_word.end = strcspn(buffer, " ");
     buffer[strcspn(buffer, " ")] = '@';
 
-    compare_input_to_text(text, input, current_word);
+    compare_input_to_text(text, input, &current_word);
 
     const int exp = 5;
 
