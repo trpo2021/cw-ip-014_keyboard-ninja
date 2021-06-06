@@ -5,6 +5,7 @@
 
 #include <ctest.h>
 
+/*
 CTEST(read_text, test1)
 {
     char identifier[MAX_LENGTH_OF_IDENTIFIER];
@@ -89,4 +90,4 @@ CTEST(read_text, test4)
     strcat(exp, "(x+2)^2+(y+2)^2=4 z=3xy z=0 x=43*39-3910 y=x^2+25");
 
     ASSERT_STR(exp, text);
-}
+}*/
