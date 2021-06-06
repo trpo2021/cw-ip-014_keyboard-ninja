@@ -60,11 +60,11 @@ void compare_input_to_text(
     }
 }
 
-void shift_current_word(char buffer[MAX_LENGTH_OF_TEXT], c_w current_word){
-	current_word.position = current_word.end + 1;
+void shift_current_word(char buffer[MAX_LENGTH_OF_TEXT], c_w current_word)
+{
+    current_word.position = current_word.end + 1;
     current_word.start = current_word.end + 1;
     current_word.end = strcspn(buffer, " ");
-
     buffer[strcspn(buffer, " ")] = 64;
 }
 
@@ -80,7 +80,6 @@ void start_round(
     current_word.position = 0;
     current_word.start = 0;
     current_word.end = strcspn(buffer, " ");
-
     buffer[strcspn(buffer, " ")] = 64;
 
     while (current_word.position < strlen(text)) {
