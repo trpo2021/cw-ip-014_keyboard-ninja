@@ -8,7 +8,8 @@
 void print_round_interface(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
         char text[MAX_LENGTH_OF_TEXT],
-        c_w current_word)
+        c_w current_word,
+        int errors)
 {
     printf("\033[1mROUND | IDENTIFIER \033[0m");
 
@@ -17,6 +18,8 @@ void print_round_interface(
     for (i = 0; i < strcspn(identifier, " | "); i++) {
         printf("\033[32m%c\033[0m", identifier[i]);
     }
+
+    printf(" | \033[31;1mERRORS = %d \033[0m", errors);
 
     printf("\033[1m\n   Original text:\n\033[0m");
 
@@ -74,6 +77,7 @@ void start_round(
 {
     c_w current_word;
     char input[MAX_LENGTH_OF_TEXT], buffer[MAX_LENGTH_OF_TEXT];
+    int errors = 0;
 
     strcpy(buffer, text);
 
@@ -85,7 +89,7 @@ void start_round(
     while (current_word.position < strlen(text)) {
         system("clear");
 
-        print_round_interface(identifier, text, current_word);
+        print_round_interface(identifier, text, current_word, errors);
 
         fgets(input, MAX_LENGTH_OF_TEXT, stdin);
 
@@ -96,6 +100,8 @@ void start_round(
 
         if (current_word.position == current_word.end) {
             shift_current_word(buffer, &current_word);
+        } else {
+            errors++;
         }
     }
 }
