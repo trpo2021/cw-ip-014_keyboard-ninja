@@ -14,4 +14,10 @@ extern const int MAX_LENGTH_OF_FILENAME;
 
 extern const int LENGTH_OF_PATH;
 
+typedef struct current_word {
+    long long unsigned int start;
+    long long unsigned int end;
+    long long unsigned int position;
+} c_w;
+
 #endif /* AUXILIARY_H */
