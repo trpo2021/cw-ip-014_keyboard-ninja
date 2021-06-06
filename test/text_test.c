@@ -1,9 +1,11 @@
+#include <string.h>
+
 #include <lib-keyboard-ninja/auxiliary.h>
 #include <lib-keyboard-ninja/text.h>
 
 #include <ctest.h>
 
-CTEST(read_text, test#1){
+CTEST(read_text, test1){
 	char identifier[MAX_LENGTH_OF_IDENTIFIER];
     char text[MAX_LENGTH_OF_TEXT];
     char filename[MAX_LENGTH_OF_FILENAME];
@@ -19,7 +21,7 @@ CTEST(read_text, test#1){
 	ASSERT_STR(exp, text);
 }
 
-CTEST(read_text, test#2){
+CTEST(read_text, test2){
 	char identifier[MAX_LENGTH_OF_IDENTIFIER];
     char text[MAX_LENGTH_OF_TEXT];
     char filename[MAX_LENGTH_OF_FILENAME];
@@ -35,7 +37,7 @@ CTEST(read_text, test#2){
 	ASSERT_STR(exp, text);
 }
 
-CTEST(read_text, test#3){
+CTEST(read_text, test3){
 	char identifier[MAX_LENGTH_OF_IDENTIFIER];
     char text[MAX_LENGTH_OF_TEXT];
     char filename[MAX_LENGTH_OF_FILENAME];
@@ -51,7 +53,7 @@ CTEST(read_text, test#3){
 	ASSERT_STR(exp, text);
 }
 
-CTEST(read_text, test#4){
+CTEST(read_text, test4){
 	char identifier[MAX_LENGTH_OF_IDENTIFIER];
     char text[MAX_LENGTH_OF_TEXT];
     char filename[MAX_LENGTH_OF_FILENAME];
