@@ -46,26 +46,26 @@ void print_round_interface(
 void compare_input_to_text(
         char text[MAX_LENGTH_OF_TEXT],
         char input[MAX_LENGTH_OF_TEXT],
-        c_w current_word)
+        c_w* current_word)
 {
     long long unsigned int i;
     int counter = 0;
 
-    for (i = current_word.position; i < current_word.end; i++) {
+    for (i = current_word->position; i < current_word->end; i++) {
         if (input[counter++] == text[i]) {
-            current_word.position = i + 1;
+            current_word->position = i + 1;
         } else {
             break;
         }
     }
 }
 
-void shift_current_word(char buffer[MAX_LENGTH_OF_TEXT], c_w current_word)
+void shift_current_word(char buffer[MAX_LENGTH_OF_TEXT], c_w* current_word)
 {
-    current_word.position = current_word.end + 1;
-    current_word.start = current_word.end + 1;
-    current_word.end = strcspn(buffer, " ");
-    buffer[strcspn(buffer, " ")] = 64;
+    current_word->position = current_word->end + 1;
+    current_word->start = current_word->end + 1;
+    current_word->end = strcspn(buffer, " ");
+    buffer[strcspn(buffer, " ")] = '@';
 }
 
 void start_round(
@@ -80,7 +80,7 @@ void start_round(
     current_word.position = 0;
     current_word.start = 0;
     current_word.end = strcspn(buffer, " ");
-    buffer[strcspn(buffer, " ")] = 64;
+    buffer[strcspn(buffer, " ")] = '@';
 
     while (current_word.position < strlen(text)) {
         system("clear");
@@ -89,13 +89,13 @@ void start_round(
 
         fgets(input, MAX_LENGTH_OF_TEXT, stdin);
 
-        if (!strncmp(input, "/exit", 5))
+        if (!strncmp(input, "/exit", strlen("/exit")))
             break;
 
-        compare_input_to_text(text, input, current_word);
+        compare_input_to_text(text, input, &current_word);
 
         if (current_word.position == current_word.end) {
-            shift_current_word(buffer, current_word);
+            shift_current_word(buffer, &current_word);
         }
     }
 }
