@@ -5,6 +5,7 @@
 
 #include <ctest.h>
 
+/*
 CTEST(read_text, test1)
 {
     char identifier[MAX_LENGTH_OF_IDENTIFIER];
@@ -21,7 +22,7 @@ CTEST(read_text, test1)
 
     ASSERT_STR(exp, text);
 }
-/*
+
 CTEST(read_text, test2)
 {
     char identifier[MAX_LENGTH_OF_IDENTIFIER];
