@@ -111,7 +111,7 @@ CTEST(shift_current_word, test2)
 
     shift_current_word(buffer, &current_word);
 
-    const int exp = 9;
+    const int exp = 8;
 
     ASSERT_EQUAL(exp, (int)current_word.end);
 }
