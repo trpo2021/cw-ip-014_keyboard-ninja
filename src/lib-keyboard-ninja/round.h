@@ -8,7 +8,10 @@ void print_round_interface(
         char text[MAX_LENGTH_OF_TEXT],
         c_w current_word);
 
-void compare_input_to_text(char text[MAX_LENGTH_OF_TEXT], char input[MAX_LENGTH_OF_TEXT], c_w current_word)
+void compare_input_to_text(
+        char text[MAX_LENGTH_OF_TEXT],
+        char input[MAX_LENGTH_OF_TEXT],
+        c_w current_word);
 
 void start_round(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
