@@ -7,7 +7,7 @@ void print_round_interface(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
         char text[MAX_LENGTH_OF_TEXT],
         c_w current_word,
-        int errors);
+        int error_counter);
 
 void compare_input_to_text(
         char text[MAX_LENGTH_OF_TEXT],
