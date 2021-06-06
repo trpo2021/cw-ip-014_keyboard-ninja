@@ -43,6 +43,19 @@ void print_round_interface(
     }
 }
 
+void compare_input_to_text(char text[MAX_LENGTH_OF_TEXT], char input[MAX_LENGTH_OF_TEXT], c_w current_word){
+	int counter = 0;
+	
+	for (i = current_word.position; i < current_word.end;
+             i++) {
+            if (input[counter++] == text[i]) {
+                current_word.position = i + 1;
+            } else {
+                break;
+            }
+        }
+}
+
 void start_round(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
         char text[MAX_LENGTH_OF_TEXT])
@@ -69,16 +82,9 @@ void start_round(
 
         if (!strncmp(input, "/exit", 5))
             break;
-
-        for (i = current_word.position, counter = 0; i < current_word.end;
-             i++) {
-            if (input[counter++] == text[i]) {
-                current_word.position = i + 1;
-            } else {
-                break;
-            }
-        }
-
+		
+		compare_input_to_text(text, input, current_word);
+		
         if (current_word.position == current_word.end) {
             current_word.position = current_word.end + 1;
             current_word.start = current_word.end + 1;
