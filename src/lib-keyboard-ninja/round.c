@@ -5,26 +5,46 @@
 #include <lib-keyboard-ninja/auxiliary.h>
 #include <lib-keyboard-ninja/round.h>
 
-struct current_word{
-	long long unsigned int start;
-	long long unsigned int end;
-	long long unsigned int position;
-};
-
-void print_round_interface(char identifier[MAX_LENGTH_OF_IDENTIFIER])
+void print_round_interface(char identifier[MAX_LENGTH_OF_IDENTIFIER], char text[MAX_LENGTH_OF_TEXT], c_w current_word)
 {
     printf("\033[1mROUND | IDENTIFIER \033[0m");
 
     long long unsigned int i;
-    for (i = 0; i < strcspn(identifier, " | "); i++)
+	
+    for (i = 0; i < strcspn(identifier, " | "); i++){
         printf("\033[32m%c\033[0m", identifier[i]);
+	}
+	
+	printf("\033[1m\n   Original text:\n\033[0m");
+
+    for (i = 0; i < current_word.start; i++) {
+            printf("\033[90m%c\033[0m", text[i]);
+        }
+
+    for (i = current_word.start; i < current_word.position; i++) {
+            printf("\033[32m%c\033[0m", text[i]);
+        }
+
+    for (i = current_word.position; i < current_word.end; i++) {
+            printf("\033[104m%c\033[0m", text[i]);
+        }
+
+    for (i = current_word.end; i < strlen(text); i++) {
+            printf("%c", text[i]);
+        }
+
+    printf("\033[1m\n\n   Input:\n\033[0m");
+
+    for (i = current_word.start; i < current_word.position; i++) {
+            printf("\033[32m%c\033[0m", text[i]);
+        }
 }
 
 void start_round(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
         char text[MAX_LENGTH_OF_TEXT])
 {
-	struct current_word current_word;
+	c_w current_word;
     long long unsigned int i;
     char input[MAX_LENGTH_OF_TEXT], buffer[MAX_LENGTH_OF_TEXT];
     int counter;
@@ -40,31 +60,7 @@ void start_round(
     while (current_word.position < strlen(text)) {
         system("clear");
 
-        print_round_interface(identifier);
-
-        printf("\033[1m\n   Original text:\n\033[0m");
-
-        for (i = 0; i < current_word.start; i++) {
-            printf("\033[90m%c\033[0m", text[i]);
-        }
-
-        for (i = current_word.start; i < current_word.position; i++) {
-            printf("\033[32m%c\033[0m", text[i]);
-        }
-
-        for (i = current_word.position; i < current_word.end; i++) {
-            printf("\033[104m%c\033[0m", text[i]);
-        }
-
-        for (i = current_word.end; i < strlen(text); i++) {
-            printf("%c", text[i]);
-        }
-
-        printf("\033[1m\n\n   Input:\n\033[0m");
-
-        for (i = current_word.start; i < current_word.position; i++) {
-            printf("\033[32m%c\033[0m", text[i]);
-        }
+        print_round_interface(identifier, text, current_word);
 
         fgets(input, MAX_LENGTH_OF_TEXT, stdin);
 
