@@ -20,7 +20,7 @@ void result_game(
         printf("\033[1mROUND RESULTS:\033[0m\n");
         printf("Текст ID: ");
         puts(identifier);
-        printf("Длина текста: %lu\n", strlen(text));
+        printf("Длина текста: %llu\n", strlen(text));
         if (error_counter != -1) {
             printf("Количество ошибок: \033[31m%d\033[0m\n", error_counter);
             printf("Затраченное время: %.1f с\n", time_spent);
@@ -90,8 +90,8 @@ void start_game()
             case '1':
                 randomize_identifier(identifier);
                 read_text(text, identifier, filename);
-                error_counter = start_round(identifier, text);
-                result_game(text, identifier, error_counter, &time_spent);
+                error_counter = start_round(identifier, text, &time_spent);
+                result_game(text, identifier, error_counter, time_spent);
                 break;
 
             case '2':
@@ -106,8 +106,8 @@ void start_game()
                     randomize_identifier(identifier);
                 read_text(text, identifier, filename);
                 if (strlen(text) > 0) {
-                    error_counter = start_round(identifier, text);
-                    result_game(text, identifier, error_counter, &time_spent);
+                    error_counter = start_round(identifier, text, &time_spent);
+                    result_game(text, identifier, error_counter, time_spent);
                 }
                 break;
 
@@ -117,8 +117,8 @@ void start_game()
                 text[strcspn(text, "\n")] = 0;
                 strcpy(identifier, "CUSTOM");
                 if (strlen(text) > 0) {
-                    error_counter = start_round(identifier, text);
-                    result_game(text, identifier, error_counter, &time_spent);
+                    error_counter = start_round(identifier, text, &time_spent);
+                    result_game(text, identifier, error_counter, time_spent);
                 }
                 break;
 

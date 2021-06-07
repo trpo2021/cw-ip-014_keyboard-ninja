@@ -141,7 +141,7 @@ int start_round(
     }
 
     end = clock();
-    *time_spent = (double*)(end - start) / CLOCKS_PER_SEC;
+    *time_spent = (double)(end - start) / CLOCKS_PER_SEC;
 
     return error_counter;
 }
