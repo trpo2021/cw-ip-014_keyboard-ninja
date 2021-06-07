@@ -11,4 +11,6 @@ const int MAX_LENGTH_OF_IDENTIFIER = 16;
 const int MAX_LENGTH_OF_TEXT_NUMBER = 11;
 const int MAX_LENGTH_OF_FILENAME = 256;
 
+const int MAX_LENGTH_OF_INPUT = 1024;
+
 const int LENGTH_OF_PATH = 10;

@@ -11,7 +11,7 @@
 void menu_template()
 {
     printf("Добро пожаловать в клавиатурный тренажёр - ceyboard ninja!\n");
-    printf("Выберите путь:\n");
+    printf("№ - Выберите путь:\n");
     printf("1 - Начать\n");
     printf("2 - Помощь\n");
     printf("3 - Выход\n");
@@ -19,7 +19,7 @@ void menu_template()
 
 void start_game()
 {
-    char input[1024];
+    char input[MAX_LENGTH_OF_INPUT];
     char identifier[MAX_LENGTH_OF_IDENTIFIER];
     char text[MAX_LENGTH_OF_TEXT];
     char filename[MAX_LENGTH_OF_FILENAME];
@@ -35,7 +35,7 @@ void start_game()
         printf("2 - Начать игру с определенными ID\n");
         printf("3 - Начать игру со своим текстом\n");
         printf("0 - Выход в меню\n");
-        fgets(input, 1024, stdin);
+        fgets(input, MAX_LENGTH_OF_INPUT, stdin);
         input[strcspn(input, "\n")] = 0;
 
         system("clear");
@@ -91,12 +91,12 @@ void start_game()
 
 void help_game()
 {
-    char input[1024];
+    char input[MAX_LENGTH_OF_INPUT];
     while (1) {
         system("clear");
         printf("Инструкция:\n");
         printf("0 - Выход в меню\n");
-        fgets(input, 1024, stdin);
+        fgets(input, MAX_LENGTH_OF_INPUT, stdin);
         input[strcspn(input, "\n")] = 0;
 
         system("clear");
@@ -111,12 +111,12 @@ void help_game()
 
 void menu()
 {
-    char input[1024];
+    char input[MAX_LENGTH_OF_INPUT];
     int exit_flag = 0;
     while (1) {
         system("clear");
         menu_template();
-        fgets(input, 1024, stdin);
+        fgets(input, MAX_LENGTH_OF_INPUT, stdin);
         input[strcspn(input, "\n")] = 0;
         system("clear");
 

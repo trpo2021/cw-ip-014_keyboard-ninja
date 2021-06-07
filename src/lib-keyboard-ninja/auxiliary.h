@@ -12,6 +12,8 @@ extern const int MAX_LENGTH_OF_IDENTIFIER;
 extern const int MAX_LENGTH_OF_TEXT_NUMBER;
 extern const int MAX_LENGTH_OF_FILENAME;
 
+extern const int MAX_LENGTH_OF_INPUT;
+
 extern const int LENGTH_OF_PATH;
 
 typedef struct current_word {
