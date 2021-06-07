@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <lib-keyboard-ninja/menu.h>
 #include <lib-keyboard-ninja/auxiliary.h>
 #include <lib-keyboard-ninja/round.h>
 #include <lib-keyboard-ninja/text.h>
