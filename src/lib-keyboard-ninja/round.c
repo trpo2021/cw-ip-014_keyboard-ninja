@@ -58,7 +58,7 @@ void compare_input_to_text(
         char text[MAX_LENGTH_OF_TEXT],
         char input[MAX_LENGTH_OF_TEXT],
         c_w* current_word,
-		int error_counter)
+		int* error_counter)
 {
     long long unsigned int i, end;
     int counter = 0, error_flag = 0;
@@ -74,10 +74,6 @@ void compare_input_to_text(
             break;
         }
     }
-	
-	while (!((current_word->position >= current_word->start) && (current_word->position < current_word->end))){
-		shift_current_word(buffer, &current_word);
-	}
 	
 	if (error_flag) error_counter++;
 }
@@ -107,6 +103,10 @@ void start_round(
         if (!strncmp(input, "/exit", strlen("/exit")))
             break;
 
-        compare_input_to_text(text, input, &current_word);
+        compare_input_to_text(text, input, &current_word, &error_counter);
+		
+		while (!((current_word.position >= current_word.start) && (current_word.position < current_word.end))){
+		shift_current_word(buffer, &current_word);
+		}
     }
 }
