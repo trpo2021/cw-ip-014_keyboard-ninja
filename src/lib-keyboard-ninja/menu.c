@@ -9,31 +9,39 @@
 #include <lib-keyboard-ninja/round.h>
 #include <lib-keyboard-ninja/text.h>
 
-void result_game(char text[MAX_LENGTH_OF_TEXT], char identifier[MAX_LENGTH_OF_IDENTIFIER], int error_counter, double time ){
-  char input[MAX_LENGTH_OF_INPUT];
+void result_game(
+        char text[MAX_LENGTH_OF_TEXT],
+        char identifier[MAX_LENGTH_OF_IDENTIFIER],
+        int error_counter,
+        double time)
+{
+    char input[MAX_LENGTH_OF_INPUT];
     while (1) {
         system("clear");
         printf("РЕЗУЛЬТАТЫ РАУНДА:\n");
-        printf("Текст ID: "); puts(identifier);
-        printf("Длина текста: %lu\n",strlen(text));
-        if (error_counter != -1){
-        printf("Количество ошибок: %d\n", error_counter);
-        printf("Затраченное время: %.1f с\n",time);
-        printf("Средняя скорость печати = %.1f символ/секунда\n",(float)strlen(text)/time);
+        printf("Текст ID: ");
+        puts(identifier);
+        printf("Длина текста: %lu\n", strlen(text));
+        if (error_counter != -1) {
+            printf("Количество ошибок: %d\n", error_counter);
+            printf("Затраченное время: %.1f с\n", time);
+            printf("Средняя скорость печати = %.1f символ/секунда\n",
+                   (float)strlen(text) / time);
+        } else {
+            printf("Пользователь принудительно покинул раунд\n");
         }
-        else {printf("Пользователь принудительно покинул раунд\n");}
-        
+
         printf("Счёт: %llu\n", scoring(text, error_counter, time));
 
         printf("\n0 - ВЫХОД\n");
         printf("ВВОД: ");
-        
+
         fgets(input, MAX_LENGTH_OF_INPUT, stdin);
         input[strcspn(input, "\n")] = 0;
 
         system("clear");
 
-        if ((input[0] == '0')&&(strlen(input)==1)) {
+        if ((input[0] == '0') && (strlen(input) == 1)) {
             system("clear");
             break;
         }
@@ -63,8 +71,8 @@ void start_game()
 
     int exit_flag = 0, error_counter = 0;
 
-clock_t start,end;
-double time;
+    clock_t start, end;
+    double time;
 
     while (1) {
         system("clear");
@@ -87,7 +95,7 @@ double time;
                 start = clock();
                 error_counter = start_round(identifier, text);
                 end = clock();
-                time = (double)(end-start)/CLOCKS_PER_SEC;
+                time = (double)(end - start) / CLOCKS_PER_SEC;
                 break;
 
             case '2':
@@ -105,7 +113,7 @@ double time;
                     start = clock();
                     error_counter = start_round(identifier, text);
                     end = clock();
-                time = (double)(end-start)/CLOCKS_PER_SEC;
+                    time = (double)(end - start) / CLOCKS_PER_SEC;
                 }
                 break;
 
@@ -118,7 +126,7 @@ double time;
                     start = clock();
                     error_counter = start_round(identifier, text);
                     end = clock();
-                time = (double)(end-start)/CLOCKS_PER_SEC;
+                    time = (double)(end - start) / CLOCKS_PER_SEC;
                 }
                 break;
 
