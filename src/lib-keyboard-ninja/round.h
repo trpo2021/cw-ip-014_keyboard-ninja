@@ -12,7 +12,8 @@ void print_round_interface(
 void compare_input_to_text(
         char text[MAX_LENGTH_OF_TEXT],
         char input[MAX_LENGTH_OF_TEXT],
-        c_w* current_word);
+        c_w* current_word,
+		int error_counter)
 
 void shift_current_word(char buffer[MAX_LENGTH_OF_TEXT], c_w* current_word);
 

@@ -49,18 +49,29 @@ void print_round_interface(
 void compare_input_to_text(
         char text[MAX_LENGTH_OF_TEXT],
         char input[MAX_LENGTH_OF_TEXT],
-        c_w* current_word)
+        c_w* current_word,
+		int error_counter)
 {
-    long long unsigned int i;
-    int counter = 0;
-
-    for (i = current_word->position; i < current_word->end; i++) {
+    long long unsigned int i, end;
+    int counter = 0, error_flag = 0;
+	
+	if (strlen(input) + current_word->position > strlen(text)) {end = strlen(text);  error_flag = 1;}
+	else end = strlen(input) + current_word->position;
+	
+	for (i = current_word->position; i < end; i++) {
         if (input[counter++] == text[i]) {
             current_word->position = i + 1;
         } else {
+			error_flag = 1;
             break;
         }
     }
+	
+	while (!((current_word->position >= current_word->start) && (current_word->position < current_word->end))){
+		shift_current_word(buffer, &current_word);
+	}
+	
+	if (error_flag) error_counter++;
 }
 
 void shift_current_word(char buffer[MAX_LENGTH_OF_TEXT], c_w* current_word)
@@ -97,11 +108,5 @@ void start_round(
             break;
 
         compare_input_to_text(text, input, &current_word);
-
-        if (current_word.position == current_word.end) {
-            shift_current_word(buffer, &current_word);
-        } else {
-            error_counter++;
-        }
     }
 }
