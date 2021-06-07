@@ -262,3 +262,39 @@ CTEST(shift_current_word, test2)
 
     ASSERT_EQUAL(exp, (int)current_word.end);
 }
+
+CTEST(scoring, score1)
+{
+    char text[MAX_LENGTH_OF_TEXT];
+    strcpy(text, "Hello world!");
+    int error_counter = 0;
+    double time = 1.9;
+
+    const int exp = 6315;
+
+    ASSERT_EQUAL(exp, (int)scoring(text, error_counter, time));
+}
+
+CTEST(scoring, score2)
+{
+    char text[MAX_LENGTH_OF_TEXT];
+    strcpy(text, "Hello world!");
+    int error_counter = 32;
+    double time = 1.9;
+
+    const int exp = 37;
+
+    ASSERT_EQUAL(exp, (int)scoring(text, error_counter, time));
+}
+
+CTEST(scoring, score3)
+{
+    char text[MAX_LENGTH_OF_TEXT];
+    strcpy(text, "Hello world!");
+    int error_counter = -1;
+    double time = 1.9;
+
+    const int exp = 0;
+
+    ASSERT_EQUAL(exp, (int)scoring(text, error_counter, time));
+}
