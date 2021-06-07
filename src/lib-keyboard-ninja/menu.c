@@ -18,23 +18,24 @@ void result_game(
     char input[MAX_LENGTH_OF_INPUT];
     while (1) {
         system("clear");
-        printf("РЕЗУЛЬТАТЫ РАУНДА:\n");
+        printf("\033[1mROUND RESULTS:\033[0m\n");
         printf("Текст ID: ");
         puts(identifier);
         printf("Длина текста: %lu\n", strlen(text));
         if (error_counter != -1) {
-            printf("Количество ошибок: %d\n", error_counter);
+            printf("Количество ошибок: \033[31m%d\033[0m\n", error_counter);
             printf("Затраченное время: %.1f с\n", time);
             printf("Средняя скорость печати = %.1f символ/секунда\n",
                    (float)strlen(text) / time);
         } else {
-            printf("Пользователь принудительно покинул раунд\n");
+            printf("\033[1mПользователь принудительно покинул раунд\033[0m\n");
         }
 
-        printf("Счёт: %llu\n", scoring(text, error_counter, time));
+        printf("\033[1;32mСчёт: %llu\033[0m\n",
+               scoring(text, error_counter, time));
 
-        printf("\n0 - ВЫХОД\n");
-        printf("ВВОД: ");
+        printf("\n\033[1;31m0 - Выход в меню\033[0m\n");
+        printf("\033[1mINPUT:\033[0m ");
 
         fgets(input, MAX_LENGTH_OF_INPUT, stdin);
         input[strcspn(input, "\n")] = 0;
@@ -96,6 +97,7 @@ void start_game()
                 error_counter = start_round(identifier, text);
                 end = clock();
                 time = (double)(end - start) / CLOCKS_PER_SEC;
+                result_game(text, identifier, error_counter, time);
                 break;
 
             case '2':
@@ -114,6 +116,7 @@ void start_game()
                     error_counter = start_round(identifier, text);
                     end = clock();
                     time = (double)(end - start) / CLOCKS_PER_SEC;
+                    result_game(text, identifier, error_counter, time);
                 }
                 break;
 
@@ -127,6 +130,7 @@ void start_game()
                     error_counter = start_round(identifier, text);
                     end = clock();
                     time = (double)(end - start) / CLOCKS_PER_SEC;
+                    result_game(text, identifier, error_counter, time);
                 }
                 break;
 
