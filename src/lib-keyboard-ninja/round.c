@@ -46,6 +46,14 @@ void print_round_interface(
     }
 }
 
+void shift_current_word(char buffer[MAX_LENGTH_OF_TEXT], c_w* current_word)
+{
+    current_word->position = current_word->end + 1;
+    current_word->start = current_word->end + 1;
+    current_word->end = strcspn(buffer, " ");
+    buffer[strcspn(buffer, " ")] = '@';
+}
+
 void compare_input_to_text(
         char text[MAX_LENGTH_OF_TEXT],
         char input[MAX_LENGTH_OF_TEXT],
@@ -72,14 +80,6 @@ void compare_input_to_text(
 	}
 	
 	if (error_flag) error_counter++;
-}
-
-void shift_current_word(char buffer[MAX_LENGTH_OF_TEXT], c_w* current_word)
-{
-    current_word->position = current_word->end + 1;
-    current_word->start = current_word->end + 1;
-    current_word->end = strcspn(buffer, " ");
-    buffer[strcspn(buffer, " ")] = '@';
 }
 
 void start_round(
