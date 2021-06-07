@@ -74,6 +74,52 @@ CTEST(compare_input_to_text, test3)
     ASSERT_EQUAL(exp, (int)current_word.position);
 }
 
+CTEST(compare_input_to_text, test4)
+{
+    c_w current_word;
+    char text[MAX_LENGTH_OF_TEXT];
+    char input[MAX_LENGTH_OF_TEXT];
+    char buffer[MAX_LENGTH_OF_TEXT];
+
+    strcpy(text, "Hello world!");
+    strcpy(input, "Hello wor");
+    strcpy(buffer, text);
+
+    current_word.position = 0;
+    current_word.start = 0;
+    current_word.end = strcspn(buffer, " ");
+    buffer[strcspn(buffer, " ")] = '@';
+
+    compare_input_to_text(text, input, &current_word);
+
+    const int exp = 8;
+
+    ASSERT_EQUAL(exp, (int)current_word.position);
+}
+
+CTEST(compare_input_to_text, test5)
+{
+    c_w current_word;
+    char text[MAX_LENGTH_OF_TEXT];
+    char input[MAX_LENGTH_OF_TEXT];
+    char buffer[MAX_LENGTH_OF_TEXT];
+
+    strcpy(text, "Hello world!");
+    strcpy(input, "Hello world!");
+    strcpy(buffer, text);
+
+    current_word.position = 0;
+    current_word.start = 0;
+    current_word.end = strcspn(buffer, " ");
+    buffer[strcspn(buffer, " ")] = '@';
+
+    compare_input_to_text(text, input, &current_word);
+
+    const int exp = 11;
+
+    ASSERT_EQUAL(exp, (int)current_word.position);
+}
+
 CTEST(shift_current_word, test1)
 {
     c_w current_word;
