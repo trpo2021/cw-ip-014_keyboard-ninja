@@ -64,11 +64,11 @@ void compare_input_to_text(
     long long unsigned int i, end;
     int counter = 0, error_flag = 0;
 
-    if (strlen(input) + current_word->position > strlen(text)) {
+    if (strlen(input) + current_word->position - 1 > strlen(text)) {
         end = strlen(text);
         error_flag = 1;
     } else
-        end = strlen(input) + current_word->position;
+        end = strlen(input) + current_word->position - 1;
 
     for (i = current_word->position; i < end; i++) {
         if (input[counter++] == text[i]) {
@@ -80,7 +80,7 @@ void compare_input_to_text(
     }
 
     if (error_flag)
-        error_counter++;
+        *error_counter = *error_counter + 1;
 }
 
 void start_round(
