@@ -6,8 +6,8 @@
 
 int main()
 {
-system("clear");
-srand(time(NULL));
-menu();
-return 0;
+    system("clear");
+    srand(time(NULL));
+    menu();
+    return 0;
 }

@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <lib-keyboard-ninja/menu.h>
 #include <lib-keyboard-ninja/auxiliary.h>
+#include <lib-keyboard-ninja/menu.h>
 #include <lib-keyboard-ninja/round.h>
 #include <lib-keyboard-ninja/text.h>
 
@@ -29,8 +29,8 @@ void start_game()
     int exit_flag = 0, error_counter = 0;
 
     while (1) {
-		system("clear");
-		printf("№ - START GAME MENU\n");
+        system("clear");
+        printf("№ - START GAME MENU\n");
         printf("1 - Начать игру со случайным ID\n");
         printf("2 - Начать игру с определенными ID\n");
         printf("3 - Начать игру со своим текстом\n");
@@ -46,7 +46,7 @@ void start_game()
                 randomize_identifier(identifier);
                 read_text(text, identifier, filename);
                 error_counter = start_round(identifier, text);
-				printf("\n%d\n",error_counter);
+                printf("\n%d\n", error_counter);
                 break;
 
             case '2':
@@ -60,7 +60,7 @@ void start_game()
                 read_text(text, identifier, filename);
                 if (strlen(text) > 0) {
                     error_counter = start_round(identifier, text);
-					printf("\n%d\n",error_counter);
+                    printf("\n%d\n", error_counter);
                 }
                 break;
 
@@ -71,7 +71,7 @@ void start_game()
                 strcpy(identifier, "CUSTOM");
                 if (strlen(text) > 0) {
                     error_counter = start_round(identifier, text);
-					printf("\n%d\n",error_counter);
+                    printf("\n%d\n", error_counter);
                 }
                 break;
 
@@ -93,7 +93,7 @@ void help_game()
 {
     char input[1024];
     while (1) {
-		system("clear");
+        system("clear");
         printf("Инструкция:\n");
         printf("0 - Выход в меню\n");
         fgets(input, 1024, stdin);
@@ -114,7 +114,7 @@ void menu()
     char input[1024];
     int exit_flag = 0;
     while (1) {
-		system("clear");
+        system("clear");
         menu_template();
         fgets(input, 1024, stdin);
         input[strcspn(input, "\n")] = 0;
