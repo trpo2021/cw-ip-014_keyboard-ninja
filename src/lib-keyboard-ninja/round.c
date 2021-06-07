@@ -19,7 +19,7 @@ void print_round_interface(
         printf("\033[32m%c\033[0m", identifier[i]);
     }
 
-    printf("\033[1m | \033[0m\033[31;1mERRORS = %d \033[0m", error_counter);
+    printf("\033[1m | \033[0m\033[31;1mERROR COUNTER : %d \033[0m", error_counter);
 
     printf("\033[1m\n   Original text:\n\033[0m");
 
