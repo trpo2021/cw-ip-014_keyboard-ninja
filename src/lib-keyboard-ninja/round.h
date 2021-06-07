@@ -22,6 +22,7 @@ scoring(char text[MAX_LENGTH_OF_TEXT], int error_counter, double time);
 
 int start_round(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
-        char text[MAX_LENGTH_OF_TEXT]);
+        char text[MAX_LENGTH_OF_TEXT],
+        double* time_spent);
 
 #endif /* ROUND_H */

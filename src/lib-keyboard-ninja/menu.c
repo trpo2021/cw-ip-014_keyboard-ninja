@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 
 #include <lib-keyboard-ninja/auxiliary.h>
 #include <lib-keyboard-ninja/menu.h>
@@ -13,7 +12,7 @@ void result_game(
         char text[MAX_LENGTH_OF_TEXT],
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
         int error_counter,
-        double time)
+        double time_spent)
 {
     char input[MAX_LENGTH_OF_INPUT];
     while (1) {
@@ -24,15 +23,15 @@ void result_game(
         printf("Длина текста: %lu\n", strlen(text));
         if (error_counter != -1) {
             printf("Количество ошибок: \033[31m%d\033[0m\n", error_counter);
-            printf("Затраченное время: %.1f с\n", time);
+            printf("Затраченное время: %.1f с\n", time_spent);
             printf("Средняя скорость печати = %.1f символ/секунда\n",
-                   (float)strlen(text) / time);
+                   (float)strlen(text) / time_spent);
         } else {
             printf("\033[1mПользователь принудительно покинул раунд\033[0m\n");
         }
 
         printf("\033[1;32mСчёт: %llu\033[0m\n",
-               scoring(text, error_counter, time));
+               scoring(text, error_counter, time_spent));
 
         printf("\n\033[1;31m0 - Выход в меню\033[0m\n");
         printf("\033[1mINPUT:\033[0m ");
@@ -71,9 +70,7 @@ void start_game()
     strcpy(filename, "stdin.txt");
 
     int exit_flag = 0, error_counter = 0;
-
-    clock_t start, end;
-    double time;
+    double time_spent = 1;
 
     while (1) {
         system("clear");
@@ -93,11 +90,8 @@ void start_game()
             case '1':
                 randomize_identifier(identifier);
                 read_text(text, identifier, filename);
-                start = clock();
                 error_counter = start_round(identifier, text);
-                end = clock();
-                time = (double)(end - start) / CLOCKS_PER_SEC;
-                result_game(text, identifier, error_counter, time);
+                result_game(text, identifier, error_counter, &time_spent);
                 break;
 
             case '2':
@@ -112,11 +106,8 @@ void start_game()
                     randomize_identifier(identifier);
                 read_text(text, identifier, filename);
                 if (strlen(text) > 0) {
-                    start = clock();
                     error_counter = start_round(identifier, text);
-                    end = clock();
-                    time = (double)(end - start) / CLOCKS_PER_SEC;
-                    result_game(text, identifier, error_counter, time);
+                    result_game(text, identifier, error_counter, &time_spent);
                 }
                 break;
 
@@ -126,11 +117,8 @@ void start_game()
                 text[strcspn(text, "\n")] = 0;
                 strcpy(identifier, "CUSTOM");
                 if (strlen(text) > 0) {
-                    start = clock();
                     error_counter = start_round(identifier, text);
-                    end = clock();
-                    time = (double)(end - start) / CLOCKS_PER_SEC;
-                    result_game(text, identifier, error_counter, time);
+                    result_game(text, identifier, error_counter, &time_spent);
                 }
                 break;
 
