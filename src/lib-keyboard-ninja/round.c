@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include <lib-keyboard-ninja/auxiliary.h>
 #include <lib-keyboard-ninja/round.h>
@@ -95,12 +96,16 @@ scoring(char text[MAX_LENGTH_OF_TEXT], int error_counter, double time)
 
 int start_round(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
-        char text[MAX_LENGTH_OF_TEXT])
+        char text[MAX_LENGTH_OF_TEXT],
+        double* time_spent)
 {
     c_w current_word;
     char input[MAX_LENGTH_OF_TEXT], buffer[MAX_LENGTH_OF_TEXT];
     int error_counter = 0;
     long long unsigned int current_position;
+    clock_t start, end;
+
+    start = clock();
 
     strcpy(buffer, text);
 
@@ -134,6 +139,9 @@ int start_round(
         else
             current_word.position = current_position;
     }
+
+    end = clock();
+    *time_spent = (double)(end - start) / CLOCKS_PER_SEC;
 
     return error_counter;
 }
