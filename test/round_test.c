@@ -125,6 +125,102 @@ CTEST(compare_input_to_text, read5)
     ASSERT_EQUAL(exp, (int)current_word.position);
 }
 
+CTEST(compare_input_to_text, error1)
+{
+    c_w current_word;
+    char text[MAX_LENGTH_OF_TEXT];
+    char input[MAX_LENGTH_OF_TEXT];
+    char buffer[MAX_LENGTH_OF_TEXT];
+    int error_counter = 0;
+
+    strcpy(text, "Hello world!");
+    strcpy(input, "Hew ");
+    strcpy(buffer, text);
+
+    current_word.position = 0;
+    current_word.start = 0;
+    current_word.end = strcspn(buffer, " ");
+    buffer[strcspn(buffer, " ")] = '@';
+
+    compare_input_to_text(text, input, &current_word, &error_counter);
+
+    const int exp = 1;
+
+    ASSERT_EQUAL(exp, error_counter);
+}
+
+CTEST(compare_input_to_text, error2)
+{
+    c_w current_word;
+    char text[MAX_LENGTH_OF_TEXT];
+    char input[MAX_LENGTH_OF_TEXT];
+    char buffer[MAX_LENGTH_OF_TEXT];
+    int error_counter = 0;
+
+    strcpy(text, "Hello world!");
+    strcpy(input, "Hellow ");
+    strcpy(buffer, text);
+
+    current_word.position = 0;
+    current_word.start = 0;
+    current_word.end = strcspn(buffer, " ");
+    buffer[strcspn(buffer, " ")] = '@';
+
+    compare_input_to_text(text, input, &current_word, &error_counter);
+
+    const int exp = 1;
+
+    ASSERT_EQUAL(exp, error_counter);
+}
+
+CTEST(compare_input_to_text, error3)
+{
+    c_w current_word;
+    char text[MAX_LENGTH_OF_TEXT];
+    char input[MAX_LENGTH_OF_TEXT];
+    char buffer[MAX_LENGTH_OF_TEXT];
+    int error_counter = 0;
+
+    strcpy(text, "Hello world!");
+    strcpy(input, "Hello ");
+    strcpy(buffer, text);
+
+    current_word.position = 0;
+    current_word.start = 0;
+    current_word.end = strcspn(buffer, " ");
+    buffer[strcspn(buffer, " ")] = '@';
+
+    compare_input_to_text(text, input, &current_word, &error_counter);
+
+    const int exp = 0;
+
+    ASSERT_EQUAL(exp, error_counter);
+}
+
+CTEST(compare_input_to_text, error4)
+{
+    c_w current_word;
+    char text[MAX_LENGTH_OF_TEXT];
+    char input[MAX_LENGTH_OF_TEXT];
+    char buffer[MAX_LENGTH_OF_TEXT];
+    int error_counter = 0;
+
+    strcpy(text, "Hello world!");
+    strcpy(input, "Hel");
+    strcpy(buffer, text);
+
+    current_word.position = 0;
+    current_word.start = 0;
+    current_word.end = strcspn(buffer, " ");
+    buffer[strcspn(buffer, " ")] = '@';
+
+    compare_input_to_text(text, input, &current_word, &error_counter);
+
+    const int exp = 0;
+
+    ASSERT_EQUAL(exp, error_counter);
+}
+
 CTEST(shift_current_word, test1)
 {
     c_w current_word;
