@@ -33,7 +33,7 @@ void start_game()
 
 void settings_game()
 {
-    printf("Инструкция:\n");
+    printf("Инструкция\n");
     printf("0 - Выход в меню\n");
     exit_menu();
 }
