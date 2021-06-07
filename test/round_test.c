@@ -134,7 +134,7 @@ CTEST(compare_input_to_text, error1)
     int error_counter = 0;
 
     strcpy(text, "Hello world!");
-    strcpy(input, "Hew");
+    strcpy(input, "Hew ");
     strcpy(buffer, text);
 
     current_word.position = 0;
@@ -158,7 +158,7 @@ CTEST(compare_input_to_text, error2)
     int error_counter = 0;
 
     strcpy(text, "Hello world!");
-    strcpy(input, "Hellow");
+    strcpy(input, "Hellow ");
     strcpy(buffer, text);
 
     current_word.position = 0;
