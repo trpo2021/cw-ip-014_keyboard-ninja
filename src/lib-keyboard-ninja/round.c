@@ -90,7 +90,7 @@ int start_round(
     c_w current_word;
     char input[MAX_LENGTH_OF_TEXT], buffer[MAX_LENGTH_OF_TEXT];
     int error_counter = 0;
-    long long unsigned int current_position = 0;
+    long long unsigned int current_position;
 
     strcpy(buffer, text);
 
@@ -113,7 +113,7 @@ int start_round(
 
         current_position = current_word.position;
 
-        while (current_word.position >= current_word.end) {
+        while (current_position >= current_word.end) {
             shift_current_word(buffer, &current_word);
         }
     }
