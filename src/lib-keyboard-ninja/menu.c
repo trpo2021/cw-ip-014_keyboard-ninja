@@ -10,12 +10,14 @@
 
 void menu_template()
 {
-    printf("Добро пожаловать в клавиатурный тренажёр - ceyboard ninja!\n");
-    printf("№ - Выберите путь:\n");
+    printf("\033[1mДобро пожаловать в клавиатурный тренажёр - ceyboard ");
+    printf("ninja!\n");
+    printf("№ - Выберите путь:\033[0m\n");
     printf("1 - Начать\n");
     printf("2 - Помощь\n");
     printf("3 - Выход\n");
-	printf("INPUT: ");
+    printf("\033[1mINPUT:\033[0m ");
+    ;
 }
 
 void start_game()
@@ -31,12 +33,12 @@ void start_game()
 
     while (1) {
         system("clear");
-        printf("№ - START GAME MENU\n");
+        printf("\033[1m№ - START GAME MENU\033[0m\n");
         printf("1 - Начать игру со случайным ID\n");
         printf("2 - Начать игру с определенными ID\n");
         printf("3 - Начать игру со своим текстом\n");
         printf("0 - Выход в меню\n");
-		printf("INPUT: ");
+        printf("\033[1mINPUT:\033[0m ");
         fgets(input, MAX_LENGTH_OF_INPUT, stdin);
         input[strcspn(input, "\n")] = 0;
 
@@ -52,9 +54,11 @@ void start_game()
                 break;
 
             case '2':
-                printf("Введите ID полностью или только тип текста\n");
+                printf("\033[1mВведите ID полностью или только тип ");
+                printf("текста\033[0m\n");
                 printf("ID состоит из '<тип текста>#<номер текста | >'\n");
                 printf("Пример: 'S#1 | ' или 'S'\n");
+                printf("\033[1mINPUT:\033[0m ");
                 fgets(identifier, MAX_LENGTH_OF_IDENTIFIER, stdin);
                 identifier[strcspn(identifier, "\n")] = 0;
                 if (strlen(identifier) == 1)
@@ -67,7 +71,7 @@ void start_game()
                 break;
 
             case '3':
-                printf("Введите свой текст:\n");
+                printf("\033[1mВведите свой текст:\033[0m\n");
                 fgets(text, MAX_LENGTH_OF_TEXT, stdin);
                 text[strcspn(text, "\n")] = 0;
                 strcpy(identifier, "CUSTOM");
@@ -96,7 +100,7 @@ void help_game()
     char input[MAX_LENGTH_OF_INPUT];
     while (1) {
         system("clear");
-        printf("Помощь:\n");
+        printf("\033[1mПомощь:\033[0m\n");
         printf("Приложение представляет собой клавиатурный тренажёр, где ");
         printf("ваша задача набирать текст.\nВаше текущее слово выделяется");
         printf(" во время раунда синим цветом. Вы можете набирать слово по");
@@ -107,7 +111,7 @@ void help_game()
         printf("определенного типа, с определенным текстом или же со своим.\n");
         printf("После завершения раунда вам будет показана его статистика.\n");
         printf("0 - Выход в меню\n");
-		printf("INPUT: ");
+        printf("\033[1mINPUT:\033[0m ");
         fgets(input, MAX_LENGTH_OF_INPUT, stdin);
         input[strcspn(input, "\n")] = 0;
 
