@@ -15,6 +15,7 @@ void menu_template()
     printf("1 - Начать\n");
     printf("2 - Помощь\n");
     printf("3 - Выход\n");
+	printf("INPUT: ");
 }
 
 void start_game()
@@ -35,6 +36,7 @@ void start_game()
         printf("2 - Начать игру с определенными ID\n");
         printf("3 - Начать игру со своим текстом\n");
         printf("0 - Выход в меню\n");
+		printf("INPUT: ");
         fgets(input, MAX_LENGTH_OF_INPUT, stdin);
         input[strcspn(input, "\n")] = 0;
 
@@ -94,8 +96,18 @@ void help_game()
     char input[MAX_LENGTH_OF_INPUT];
     while (1) {
         system("clear");
-        printf("Инструкция:\n");
+        printf("Помощь:\n");
+        printf("Приложение представляет собой клавиатурный тренажёр, где ");
+        printf("ваша задача набирать текст.\nВаше текущее слово выделяется");
+        printf(" во время раунда синим цветом. Вы можете набирать слово по");
+        printf("буквам, целиком или вовсе набирать сразу несколько слов ");
+        printf("подряд. Так же в любой момент раунда вы можете написать ");
+        printf("'/exit' для выхода.\nВ данном приложении вы можете выбирать");
+        printf("тип раунда: со случайным текстом из базы, с текстом ");
+        printf("определенного типа, с определенным текстом или же со своим.\n");
+        printf("После завершения раунда вам будет показана его статистика.\n");
         printf("0 - Выход в меню\n");
+		printf("INPUT: ");
         fgets(input, MAX_LENGTH_OF_INPUT, stdin);
         input[strcspn(input, "\n")] = 0;
 
