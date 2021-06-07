@@ -17,7 +17,7 @@ void compare_input_to_text(
         c_w* current_word,
         int* error_counter);
 
-void start_round(
+int start_round(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
         char text[MAX_LENGTH_OF_TEXT]);
 

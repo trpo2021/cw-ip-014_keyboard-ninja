@@ -83,7 +83,7 @@ void compare_input_to_text(
         *error_counter = *error_counter + 1;
 }
 
-void start_round(
+int start_round(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
         char text[MAX_LENGTH_OF_TEXT])
 {
@@ -117,4 +117,6 @@ void start_round(
             shift_current_word(buffer, &current_word);
         }
     }
+
+    return error_counter;
 }
