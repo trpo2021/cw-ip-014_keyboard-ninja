@@ -5,12 +5,13 @@
 
 #include <ctest.h>
 
-CTEST(compare_input_to_text, test1)
+CTEST(compare_input_to_text, read1)
 {
     c_w current_word;
     char text[MAX_LENGTH_OF_TEXT];
     char input[MAX_LENGTH_OF_TEXT];
     char buffer[MAX_LENGTH_OF_TEXT];
+    int error_counter = 0;
 
     strcpy(text, "Hello world!");
     strcpy(input, "Hello");
@@ -21,19 +22,20 @@ CTEST(compare_input_to_text, test1)
     current_word.end = strcspn(buffer, " ");
     buffer[strcspn(buffer, " ")] = '@';
 
-    compare_input_to_text(text, input, &current_word);
+    compare_input_to_text(text, input, &current_word, &error_counter);
 
     const int exp = 5;
 
     ASSERT_EQUAL(exp, (int)current_word.position);
 }
 
-CTEST(compare_input_to_text, test2)
+CTEST(compare_input_to_text, read2)
 {
     c_w current_word;
     char text[MAX_LENGTH_OF_TEXT];
     char input[MAX_LENGTH_OF_TEXT];
     char buffer[MAX_LENGTH_OF_TEXT];
+    int error_counter = 0;
 
     strcpy(text, "Hello world!");
     strcpy(input, "Hel");
@@ -44,19 +46,20 @@ CTEST(compare_input_to_text, test2)
     current_word.end = strcspn(buffer, " ");
     buffer[strcspn(buffer, " ")] = '@';
 
-    compare_input_to_text(text, input, &current_word);
+    compare_input_to_text(text, input, &current_word, &error_counter);
 
     const int exp = 3;
 
     ASSERT_EQUAL(exp, (int)current_word.position);
 }
 
-CTEST(compare_input_to_text, test3)
+CTEST(compare_input_to_text, read3)
 {
     c_w current_word;
     char text[MAX_LENGTH_OF_TEXT];
     char input[MAX_LENGTH_OF_TEXT];
     char buffer[MAX_LENGTH_OF_TEXT];
+    int error_counter = 0;
 
     strcpy(text, "Hello world!");
     strcpy(input, "Hello ");
@@ -67,19 +70,20 @@ CTEST(compare_input_to_text, test3)
     current_word.end = strcspn(buffer, " ");
     buffer[strcspn(buffer, " ")] = '@';
 
-    compare_input_to_text(text, input, &current_word);
+    compare_input_to_text(text, input, &current_word, &error_counter);
 
     const int exp = 5;
 
     ASSERT_EQUAL(exp, (int)current_word.position);
 }
 
-CTEST(compare_input_to_text, test4)
+CTEST(compare_input_to_text, read4)
 {
     c_w current_word;
     char text[MAX_LENGTH_OF_TEXT];
     char input[MAX_LENGTH_OF_TEXT];
     char buffer[MAX_LENGTH_OF_TEXT];
+    int error_counter = 0;
 
     strcpy(text, "Hello world!");
     strcpy(input, "Hello wor");
@@ -90,19 +94,20 @@ CTEST(compare_input_to_text, test4)
     current_word.end = strcspn(buffer, " ");
     buffer[strcspn(buffer, " ")] = '@';
 
-    compare_input_to_text(text, input, &current_word);
+    compare_input_to_text(text, input, &current_word, &error_counter);
 
     const int exp = 8;
 
     ASSERT_EQUAL(exp, (int)current_word.position);
 }
 
-CTEST(compare_input_to_text, test5)
+CTEST(compare_input_to_text, read5)
 {
     c_w current_word;
     char text[MAX_LENGTH_OF_TEXT];
     char input[MAX_LENGTH_OF_TEXT];
     char buffer[MAX_LENGTH_OF_TEXT];
+    int error_counter = 0;
 
     strcpy(text, "Hello world!");
     strcpy(input, "Hello world!");
@@ -113,7 +118,7 @@ CTEST(compare_input_to_text, test5)
     current_word.end = strcspn(buffer, " ");
     buffer[strcspn(buffer, " ")] = '@';
 
-    compare_input_to_text(text, input, &current_word);
+    compare_input_to_text(text, input, &current_word, &error_counter);
 
     const int exp = 11;
 
