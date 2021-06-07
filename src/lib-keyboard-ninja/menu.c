@@ -10,7 +10,6 @@
 
 void menu_template()
 {
-    system("clear");
     printf("Добро пожаловать в клавиатурный тренажёр - ceyboard ninja!\n");
     printf("Выберите путь:\n");
     printf("1 - Начать\n");
@@ -30,6 +29,8 @@ void start_game()
     int exit_flag = 0, error_counter = 0;
 
     while (1) {
+		system("clear");
+		printf("№ - START GAME MENU\n");
         printf("1 - Начать игру со случайным ID\n");
         printf("2 - Начать игру с определенными ID\n");
         printf("3 - Начать игру со своим текстом\n");
@@ -45,6 +46,7 @@ void start_game()
                 randomize_identifier(identifier);
                 read_text(text, identifier, filename);
                 error_counter = start_round(identifier, text);
+				printf("\n%d\n",error_counter);
                 break;
 
             case '2':
@@ -58,6 +60,7 @@ void start_game()
                 read_text(text, identifier, filename);
                 if (strlen(text) > 0) {
                     error_counter = start_round(identifier, text);
+					printf("\n%d\n",error_counter);
                 }
                 break;
 
@@ -68,6 +71,7 @@ void start_game()
                 strcpy(identifier, "CUSTOM");
                 if (strlen(text) > 0) {
                     error_counter = start_round(identifier, text);
+					printf("\n%d\n",error_counter);
                 }
                 break;
 
@@ -89,7 +93,8 @@ void help_game()
 {
     char input[1024];
     while (1) {
-        printf("Инструкция\n");
+		system("clear");
+        printf("Инструкция:\n");
         printf("0 - Выход в меню\n");
         fgets(input, 1024, stdin);
         input[strcspn(input, "\n")] = 0;
@@ -109,6 +114,7 @@ void menu()
     char input[1024];
     int exit_flag = 0;
     while (1) {
+		system("clear");
         menu_template();
         fgets(input, 1024, stdin);
         input[strcspn(input, "\n")] = 0;
