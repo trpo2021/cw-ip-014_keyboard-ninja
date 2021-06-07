@@ -96,6 +96,7 @@ void start_game()
                 error_counter = start_round(identifier, text);
                 end = clock();
                 time = (double)(end - start) / CLOCKS_PER_SEC;
+                result_game(text, identifier, error_counter, time);
                 break;
 
             case '2':
@@ -114,6 +115,7 @@ void start_game()
                     error_counter = start_round(identifier, text);
                     end = clock();
                     time = (double)(end - start) / CLOCKS_PER_SEC;
+                    result_game(text, identifier, error_counter, time);
                 }
                 break;
 
@@ -127,6 +129,7 @@ void start_game()
                     error_counter = start_round(identifier, text);
                     end = clock();
                     time = (double)(end - start) / CLOCKS_PER_SEC;
+                    result_game(text, identifier, error_counter, time);
                 }
                 break;
 
