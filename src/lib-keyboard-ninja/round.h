@@ -9,14 +9,15 @@ void print_round_interface(
         c_w current_word,
         int error_counter);
 
+void shift_current_word(char buffer[MAX_LENGTH_OF_TEXT], c_w* current_word);
+
 void compare_input_to_text(
         char text[MAX_LENGTH_OF_TEXT],
         char input[MAX_LENGTH_OF_TEXT],
-        c_w* current_word);
+        c_w* current_word,
+        int* error_counter);
 
-void shift_current_word(char buffer[MAX_LENGTH_OF_TEXT], c_w* current_word);
-
-void start_round(
+int start_round(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
         char text[MAX_LENGTH_OF_TEXT]);
 

@@ -19,7 +19,8 @@ void print_round_interface(
         printf("\033[32m%c\033[0m", identifier[i]);
     }
 
-    printf("\033[1m | \033[0m\033[31;1mERRORS = %d \033[0m", error_counter);
+    printf("\033[1m | \033[0m\033[31;1mERROR COUNTER : %d \033[0m",
+           error_counter);
 
     printf("\033[1m\n   Original text:\n\033[0m");
 
@@ -46,23 +47,6 @@ void print_round_interface(
     }
 }
 
-void compare_input_to_text(
-        char text[MAX_LENGTH_OF_TEXT],
-        char input[MAX_LENGTH_OF_TEXT],
-        c_w* current_word)
-{
-    long long unsigned int i;
-    int counter = 0;
-
-    for (i = current_word->position; i < current_word->end; i++) {
-        if (input[counter++] == text[i]) {
-            current_word->position = i + 1;
-        } else {
-            break;
-        }
-    }
-}
-
 void shift_current_word(char buffer[MAX_LENGTH_OF_TEXT], c_w* current_word)
 {
     current_word->position = current_word->end + 1;
@@ -71,13 +55,42 @@ void shift_current_word(char buffer[MAX_LENGTH_OF_TEXT], c_w* current_word)
     buffer[strcspn(buffer, " ")] = '@';
 }
 
-void start_round(
+void compare_input_to_text(
+        char text[MAX_LENGTH_OF_TEXT],
+        char input[MAX_LENGTH_OF_TEXT],
+        c_w* current_word,
+        int* error_counter)
+{
+    long long unsigned int i, end;
+    int counter = 0, error_flag = 0;
+
+    if (strlen(input) + current_word->position - 1 > strlen(text)) {
+        end = strlen(text);
+        error_flag = 1;
+    } else
+        end = strlen(input) + current_word->position - 1;
+
+    for (i = current_word->position; i < end; i++) {
+        if (input[counter++] == text[i]) {
+            current_word->position = i + 1;
+        } else {
+            error_flag = 1;
+            break;
+        }
+    }
+
+    if (error_flag)
+        *error_counter = *error_counter + 1;
+}
+
+int start_round(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
         char text[MAX_LENGTH_OF_TEXT])
 {
     c_w current_word;
     char input[MAX_LENGTH_OF_TEXT], buffer[MAX_LENGTH_OF_TEXT];
     int error_counter = 0;
+    long long unsigned int current_position;
 
     strcpy(buffer, text);
 
@@ -96,12 +109,14 @@ void start_round(
         if (!strncmp(input, "/exit", strlen("/exit")))
             break;
 
-        compare_input_to_text(text, input, &current_word);
+        compare_input_to_text(text, input, &current_word, &error_counter);
 
-        if (current_word.position == current_word.end) {
+        current_position = current_word.position;
+
+        while (current_position >= current_word.end) {
             shift_current_word(buffer, &current_word);
-        } else {
-            error_counter++;
         }
     }
+
+    return error_counter;
 }
