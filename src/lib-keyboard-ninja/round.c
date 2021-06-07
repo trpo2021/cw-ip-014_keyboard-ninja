@@ -83,6 +83,14 @@ void compare_input_to_text(
         *error_counter = *error_counter + 1;
 }
 
+long long unsigned int scoring(char text[MAX_LENGTH_OF_TEXT], int error_counter, double time){
+long long unsigned int score = 0;
+if (error_counter != -1){
+score = (strlen(text)*1000)/(time + 10*error_counter);
+}
+return score;
+}
+
 int start_round(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
         char text[MAX_LENGTH_OF_TEXT])
