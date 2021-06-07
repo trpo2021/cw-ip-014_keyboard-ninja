@@ -20,7 +20,7 @@ void result_game(
         printf("\033[1mROUND RESULTS:\033[0m\n");
         printf("Текст ID: ");
         puts(identifier);
-        printf("Длина текста: %llu\n", strlen(text));
+        printf("Длина текста: %d\n", (int)strlen(text));
         if (error_counter != -1) {
             printf("Количество ошибок: \033[31m%d\033[0m\n", error_counter);
             printf("Затраченное время: %.1f с\n", time_spent);
