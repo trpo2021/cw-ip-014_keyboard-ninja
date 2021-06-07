@@ -58,7 +58,7 @@ void menu()
             break;
         case 2:
             system("clear");
-            settings_game();
+            help_game();
             break;
         case 3:
             system("clear");
