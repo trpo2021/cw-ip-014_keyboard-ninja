@@ -17,7 +17,8 @@ void compare_input_to_text(
         c_w* current_word,
         int* error_counter);
 
-long long unsigned int scoring(char text[MAX_LENGTH_OF_TEXT], int error_counter, double time);
+long long unsigned int
+scoring(char text[MAX_LENGTH_OF_TEXT], int error_counter, double time);
 
 int start_round(
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
