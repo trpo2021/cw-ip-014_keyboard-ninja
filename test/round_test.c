@@ -24,7 +24,7 @@ CTEST(compare_input_to_text, read1)
 
     compare_input_to_text(text, input, &current_word, &error_counter);
 
-    const int exp = 5;
+    const int exp = 4;
 
     ASSERT_EQUAL(exp, (int)current_word.position);
 }
@@ -48,7 +48,7 @@ CTEST(compare_input_to_text, read2)
 
     compare_input_to_text(text, input, &current_word, &error_counter);
 
-    const int exp = 3;
+    const int exp = 2;
 
     ASSERT_EQUAL(exp, (int)current_word.position);
 }
