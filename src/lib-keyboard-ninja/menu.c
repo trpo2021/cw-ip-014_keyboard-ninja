@@ -8,7 +8,7 @@ void menu_template()
     printf("Добро пожаловать в клавиатурный тренажёр - ceyboard ninja!\n");
     printf("Выберите путь:\n");
     printf("1 - Начать\n");
-    printf("2 - Настройки\n");
+    printf("2 - Помощь\n");
     printf("3 - Выход\n");
 }
 
@@ -33,7 +33,7 @@ void start_game()
 
 void settings_game()
 {
-    printf("Опции:\n");
+    printf("Инструкция:\n");
     printf("0 - Выход в меню\n");
     exit_menu();
 }
