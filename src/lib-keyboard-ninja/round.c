@@ -116,6 +116,11 @@ int start_round(
         while (current_position >= current_word.end) {
             shift_current_word(buffer, &current_word);
         }
+
+        if (text[(int)current_position] == ' ')
+            current_word.position = current_position + 1;
+        else
+            current_word.position = current_position;
     }
 
     return error_counter;
