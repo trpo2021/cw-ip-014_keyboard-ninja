@@ -157,7 +157,7 @@ void help_game()
 
         system("clear");
 
-        if (input[0] == '0') {
+        if ((input[0] == '0') && (strlen(input) == 1)) {
             system("clear");
             break;
         }
