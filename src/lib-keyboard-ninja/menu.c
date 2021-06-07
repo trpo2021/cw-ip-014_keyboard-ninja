@@ -31,7 +31,7 @@ void start_game()
     exit_menu();
 }
 
-void settings_game()
+void help_game()
 {
     printf("Инструкция\n");
     printf("0 - Выход в меню\n");
