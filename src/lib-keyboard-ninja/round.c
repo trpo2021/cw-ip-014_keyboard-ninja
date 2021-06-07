@@ -106,8 +106,10 @@ int start_round(
 
         fgets(input, MAX_LENGTH_OF_TEXT, stdin);
 
-        if (!strncmp(input, "/exit", strlen("/exit")))
+        if (!strncmp(input, "/exit", strlen("/exit"))) {
+            error_counter = -1;
             break;
+        }
 
         compare_input_to_text(text, input, &current_word, &error_counter);
 
