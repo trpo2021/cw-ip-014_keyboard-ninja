@@ -1,0 +1,10 @@
+*.o
+*.d
+*.a
+.main.c.swp
+main.c~
+#main.c#
+*.out
+*.exe
+bin/keyboard-ninja
+bin/test
