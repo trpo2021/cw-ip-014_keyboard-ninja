@@ -138,9 +138,14 @@ void start_game()
                 printf("\033[1mINPUT:\033[0m ");
                 fgets(identifier, MAX_LENGTH_OF_IDENTIFIER, stdin);
                 identifier[strcspn(identifier, "\n")] = 0;
-                if (strlen(identifier) == 1)
-                    randomize_identifier(identifier);
-                read_text(text, identifier, filename);
+
+                if (!check_identifier(identifier)) {
+                    if (strlen(identifier) == 1) {
+                        randomize_identifier(identifier);
+                    }
+                    read_text(text, identifier, filename);
+                }
+
                 if (strlen(text) > 0) {
                     error_counter = start_round(identifier, text, &time_spent);
                     result_game(text, identifier, error_counter, time_spent);
