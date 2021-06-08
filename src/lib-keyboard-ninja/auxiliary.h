@@ -9,6 +9,7 @@ extern const int AMOUNT_OF_M_TEXTS;
 
 extern const int MAX_LENGTH_OF_TEXT;
 extern const int MAX_LENGTH_OF_IDENTIFIER;
+extern const int MIN_LENGTH_OF_IDENTIFIER;
 extern const int MAX_LENGTH_OF_TEXT_NUMBER;
 extern const int MAX_LENGTH_OF_FILENAME;
 
