@@ -109,7 +109,7 @@ void start_game()
         system("clear");
         printf("\033[1;32m№ - START GAME MENU\033[0m\n");
         printf("\033[1m1 - Начать игру со случайным ID\n");
-        printf("2 - Начать игру с определенными ID\n");
+        printf("2 - Начать игру с определенным ID\n");
         printf("3 - Начать игру со своим текстом\033[0m\n");
         printf("\033[1;31m0 - Выход в меню\033[0m\n");
         printf("\033[1mINPUT:\033[0m ");
