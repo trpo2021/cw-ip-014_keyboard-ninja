@@ -103,9 +103,9 @@ int start_round(
     char input[MAX_LENGTH_OF_TEXT], buffer[MAX_LENGTH_OF_TEXT];
     int error_counter = 0;
     long long unsigned int current_position;
-    clock_t start, end;
+    time_t start, end;
 
-    start = clock();
+    start = time(NULL);
 
     strcpy(buffer, text);
 
@@ -140,8 +140,8 @@ int start_round(
             current_word.position = current_position;
     }
 
-    end = clock();
-    *time_spent = (double)(end - start) / CLOCKS_PER_SEC;
+    end = time(NULL);
+    *time_spent = (double)difftime(end, start);
 
     return error_counter;
 }
