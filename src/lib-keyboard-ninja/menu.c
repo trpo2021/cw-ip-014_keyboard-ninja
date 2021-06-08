@@ -18,7 +18,7 @@ int check_identifier(char identifier[MAX_LENGTH_OF_IDENTIFIER])
     if (strlen(identifier) == 1)
         return 0;
 
-    if (strlen(identifier) < MIN_LENGTH_OF_IDENTIFIER)
+    if ((int)strlen(identifier) < MIN_LENGTH_OF_IDENTIFIER)
         return 1;
 
     if (identifier[1] != '#')
