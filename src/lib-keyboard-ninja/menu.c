@@ -23,8 +23,8 @@ void result_game(
         printf("Длина текста: %d\n", (int)strlen(text));
         if (error_counter != -1) {
             printf("Количество ошибок: \033[31m%d\033[0m\n", error_counter);
-            printf("Затраченное время: %.1f с\n", time_spent);
-            printf("Средняя скорость печати = %.0f символ/секунда\n",
+            printf("Затраченное время: %.0f с\n", time_spent);
+            printf("Средняя скорость печати = %.1f символ/секунда\n",
                    (float)strlen(text) / time_spent);
         } else {
             printf("\033[1mПользователь принудительно покинул раунд\033[0m\n");
@@ -86,6 +86,9 @@ void start_game()
         system("clear");
 
         if (strlen(input) == 1) {
+            memset(identifier, 0, MAX_LENGTH_OF_IDENTIFIER);
+            memset(text, 0, MAX_LENGTH_OF_TEXT);
+
             switch (input[0]) {
             case '1':
                 randomize_identifier(identifier);
