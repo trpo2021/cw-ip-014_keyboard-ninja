@@ -86,6 +86,9 @@ void start_game()
         system("clear");
 
         if (strlen(input) == 1) {
+            memset(identifier, 0, MAX_LENGTH_OF_IDENTIFIER);
+            memset(text, 0, MAX_LENGTH_OF_TEXT);
+
             switch (input[0]) {
             case '1':
                 randomize_identifier(identifier);
