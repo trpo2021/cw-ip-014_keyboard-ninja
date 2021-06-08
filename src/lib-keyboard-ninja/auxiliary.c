@@ -8,6 +8,7 @@ const int AMOUNT_OF_M_TEXTS = 1;
 
 const int MAX_LENGTH_OF_TEXT = 512;
 const int MAX_LENGTH_OF_IDENTIFIER = 16;
+const int MIN_LENGTH_OF_IDENTIFIER = 6;
 const int MAX_LENGTH_OF_TEXT_NUMBER = 11;
 const int MAX_LENGTH_OF_FILENAME = 256;
 

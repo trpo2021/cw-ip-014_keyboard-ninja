@@ -3,6 +3,7 @@
 
 #include <lib-keyboard-ninja/auxiliary.h>
 
+int check_identifier(char identifier[MAX_LENGTH_OF_IDENTIFIER]);
 void result_game(
         char text[MAX_LENGTH_OF_TEXT],
         char identifier[MAX_LENGTH_OF_IDENTIFIER],

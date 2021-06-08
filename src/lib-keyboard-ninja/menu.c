@@ -8,6 +8,39 @@
 #include <lib-keyboard-ninja/round.h>
 #include <lib-keyboard-ninja/text.h>
 
+int check_identifier(char identifier[MAX_LENGTH_OF_IDENTIFIER])
+{
+    if ((identifier[0] != 'S') && (identifier[0] != 'W')
+        && (identifier[0] != 'N') && (identifier[0] != 'L')
+        && (identifier[0] != 'M'))
+        return 1;
+
+    if (strlen(identifier) == 1)
+        return 0;
+
+    if (strlen(identifier) < MIN_LENGTH_OF_IDENTIFIER)
+        return 1;
+
+    if (identifier[1] != '#')
+        return 1;
+
+    long long unsigned int i;
+
+    for (i = 2; i < strlen(identifier) - 3; i++) {
+        if ((identifier[i] < '0') || (identifier[i] > '9'))
+            return 1;
+    }
+
+    if (identifier[strlen(identifier) - 3] != ' ')
+        return 1;
+    if (identifier[strlen(identifier) - 2] != '|')
+        return 1;
+    if (identifier[strlen(identifier) - 1] != ' ')
+        return 1;
+
+    return 0;
+}
+
 void result_game(
         char text[MAX_LENGTH_OF_TEXT],
         char identifier[MAX_LENGTH_OF_IDENTIFIER],
